@@ -17,6 +17,7 @@ function emu_init()
 	emu.millis = 0;
 	emu.skip = 0;
 	emu.skip_def = 1;
+	emu.run = false;
 
 	game_gfx();
 
@@ -24,7 +25,7 @@ function emu_init()
 	emu.font_white = emu_image( 'font_white' );
 
 	emu.splash = new Image();
-	emu.splash.src = './gfx/splash_screen.png';
+	emu.splash.src = ( emu.inverted ? './gfx/splash_screen.png' : './gfx_i/splash_screen.png' );
 	emu.splash.onload = emu_setup;
 }
 
@@ -40,13 +41,21 @@ function emu_setup()
 	emu.ctx.drawImage( emu.splash, 0, 0 );
 	setup();
 
-	emu.time = Date.now();
-
 	emu_loop();
 }
 
 function emu_loop()
 {
+	if (!emu.run) {
+		if (joy.btn) {
+			joy.btn = false;
+			emu.run = true;
+			emu.time = Date.now();
+		}
+		requestAnimationFrame(emu_loop);
+		return;
+	}
+
 	if ( emu.skip > 0 ) {
 		emu.skip--;
 		requestAnimationFrame(emu_loop);

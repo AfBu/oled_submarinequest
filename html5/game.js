@@ -77,15 +77,11 @@ function setup()
 {
     score_high = 0;//eeprom_read_word(0x0000);
 
-    /*while (!get_joy_button()) {
-        joy.update();
-    }*/
-
     display.setTextColor(WHITE);
     //display.setTextColor(uint16_t color, uint16_t backgroundcolor);
     display.setTextSize(1);
     display.setTextWrap(false);
-    display.clearDisplay();
+    //display.clearDisplay();
     display.invertDisplay( ( emu.inverted ? 1 : 0 ) );
 
     lives = 0;

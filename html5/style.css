@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #ffffff;
+}
+
+#screen {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 256px;
+	height: 128px;
+	margin-left: -128px;
+	margin-top: -64px;
+	border: 2px #000000 solid;
+}
+
+#screen canvas {
+	background-color: #ffffff;
+	width: 256px;
+	height: 128px;
+	/*border: 1px #000 solid;*/
+	image-rendering: pixelated;
+}
+#screen[inverted] canvas {
+	background-color: #000000;
+}
